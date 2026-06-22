@@ -186,7 +186,7 @@
           tags: ['闊背肌', '大圓肌', '二頭肌'],
           description: '端坐在拉背機前，雙手寬握把手。挺胸收腹，利用背肌力量將把手往下拉至鎖骨上方。',
           tips: '避免用身體往後傾倒借力，感受肩膀往下壓、肩膀夾緊的感覺。',
-          breathing: '向下拉時吐氣，控制回放時吸氣。',
+          breathing: '向下拉時吐氣，控制回放時吸氣. ',
           svgPath: (color) => (
             <svg viewBox="0 0 100 100" className="w-16 h-16 stroke-current fill-none" style={{ color }} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 15 H80" strokeWidth="4" />
@@ -297,7 +297,7 @@
         rewardPet(15, isReDraw ? "重新求取了幸運手帳籤" : "抽取了今日健康籤詩");
       };
 
-      // --- 模擬 AI 輸入 (因為前端沒有金鑰，改為智能模擬解析，防呆且流暢) ---
+      // --- 智慧模擬解析飲食 ---
       const handleAiInputSubmit = (e) => {
         e.preventDefault();
         if (!aiInputText.trim()) return;
@@ -306,11 +306,9 @@
         setAiError(null);
 
         setTimeout(() => {
-          let guessedName = aiInputText.substring(0, 10);
           let guessedCal = Math.floor(Math.random() * 300) + 150;
           let guessedProtein = Math.floor(Math.random() * 20) + 10;
 
-          // 簡單匹配常見關鍵字讓模擬更有魔法感
           if(aiInputText.includes("雞肉") || aiInputText.includes("雞胸")) { guessedCal = 280; guessedProtein = 35; }
           else if(aiInputText.includes("蛋")) { guessedCal = 140; guessedProtein = 14; }
           else if(aiInputText.includes("優格")) { guessedCal = 120; guessedProtein = 10; }
@@ -423,7 +421,7 @@
         rewardPet(15, "新增了專屬動作卡片");
       };
 
-      // 拖曳編排支援
+      // 拖曳排程
       const handleDragStart = (e, exerciseId) => { e.dataTransfer.setData("text/plain", exerciseId); };
       const handleDragOver = (e) => { e.preventDefault(); };
       const handleDrop = (e, targetDay) => {
@@ -453,7 +451,7 @@
           return { text: "寫下你的第一筆飲食紀錄吧！今天的目標是 1200 kcal、80g 蛋白質，讓我們一步步輕鬆達成 ☕️" };
         }
         if (totalCalories >= 1100 && totalCalories <= 1300 && totalProtein >= PROTEIN_LIMIT) {
-          return { text: "「恭喜你！」今天的熱量與蛋白質掌握得無懈可擊，簡直是完美的健康範本！為認真自己蓋個章吧 💮" };
+          return { text: "「恭喜你！」今天的熱量與蛋白質掌握得無懈可擊，簡集是完美的健康範本！為認真自己蓋個章吧 💮" };
         }
         if (totalCalories > 1300) {
           return { text: "熱量今天稍微超標了一點點，但沒關係的！身體正在好好的代謝呢。明天我們再一起溫柔地調整節奏吧 ✨" };
@@ -673,7 +671,6 @@
               {/* TAB 2: 健身計劃 */}
               {activeTab === 'planner' && (
                 <div className="space-y-6">
-                  {/* 木質番茄休息計時器 */}
                   <div className="p-5 rounded-3xl border text-center shadow-sm relative" style={{ backgroundColor: theme.card, borderColor: theme.borderColor }}>
                     <h3 className="font-extrabold text-xs text-stone-700 mb-2">⏱️ 復古發條休息計時器</h3>
                     <div className="flex flex-col items-center justify-center gap-2">
@@ -761,13 +758,13 @@
                         </div>
                       ) : (
                         <div>
-                          <span className="text-xs font-bold">「 {petName} 」</span>
+                          <span className="text-xs font-bold">{"「 " + petName + " 」"}</span>
                           <button onClick={() => setIsEditingPetName(true)} className="text-[10px] text-stone-400">🖋️ 改名</button>
                         </div>
                       )}
                     </div>
 
-                    {/* 寵物進化盆栽動畫 */}
+                    {/* 寵物進化盆栽 */}
                     <div className="my-6 flex justify-center">
                       <div className="w-32 h-32 rounded-full bg-stone-50 border flex items-center justify-center relative shadow-inner">
                         <svg viewBox="0 0 100 100" className="w-24 h-24">
@@ -925,7 +922,7 @@
       );
     }
 
-    const root = tragedies = ReactDOM.createRoot(document.getElementById('root'));
+    const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
 </body>
